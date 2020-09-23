@@ -5,6 +5,9 @@ aaudio.hw_burst_min_usec=2000
 af.fast_track_multiplier=1
 audio_hal.force_voice_config=wide
 
+# BPF
+ro.kernel.ebpf.supported=false
+
 # Dalvik Properties
 dalvik.vm.image-dex2oat-filter=speed
 dalvik.vm.dex2oat-filter=speed
