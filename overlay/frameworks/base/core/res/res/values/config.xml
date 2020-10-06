@@ -427,9 +427,6 @@
     <!-- Should the pinner service pin the Home application? -->
     <bool name="config_pinnerHomeApp">true</bool>
 
-    <!-- Should the pinner service pin the Camera application? -->
-    <bool name="config_pinnerCameraApp">true</bool>
-
     <!-- The device supports freeform window management -->
     <bool name="config_freeformWindowManagement">true</bool>
 
