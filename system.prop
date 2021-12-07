@@ -89,6 +89,9 @@ debug.stagefright.ccodec=0
 debug.stagefright.omx_default_rank.sw-audio=1
 debug.stagefright.omx_default_rank=0
 
+# System
+persist.sys.binary_xml=false
+
 # Widevine
 drm.service.enabled=true
 
@@ -97,4 +100,3 @@ ro.oem_unlock_supported=false
 
 # LMKD
 ro.lmk.use_psi=false
-
