@@ -63,6 +63,7 @@ camera2.portability.force_api=1
 
 # Graphics
 debug.sf.latch_unsignaled=1
+debug.renderengine.backend=threaded
 ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 debug.hwc.winupdate=1
 
