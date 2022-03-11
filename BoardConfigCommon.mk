@@ -77,6 +77,7 @@ TARGET_KERNEL_SOURCE := kernel/samsung/universal5433
 KERNEL_TOOLCHAIN_PREFIX := arm-linux-androideabi-
 BOARD_KERNEL_IMAGE_NAME := zImage
 TARGET_LINUX_KERNEL_VERSION := 3.10
+TARGET_KERNEL_CLANG_COMPILE := false
 
 # Ant+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
@@ -135,6 +136,7 @@ BOARD_USES_FIMGAPI_V4L2 := false
 
 # ValidityService
 BOARD_USES_VALIDITY := true
+
 
 # KEYSTORE
 BOARD_USES_TRUST_KEYMASTER := true
