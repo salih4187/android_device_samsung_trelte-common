@@ -174,13 +174,8 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
-    android.hidl.base@1.0 \
-    android.hidl.manager@1.0 \
     libhidltransport \
-    libhidltransport.vendor \
-    libhwbinder \
-    libhwbinder.vendor \
-    vndservicemanager
+    libhwbinder
 
 # IR
 PRODUCT_PACKAGES += \
@@ -208,7 +203,7 @@ PRODUCT_PACKAGES += \
     mcDriverDaemon \
     libMcClient \
     libMcRegistry
-    
+
 # NFC
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/nfc/nfcee_access.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/nfcee_access.xml \
@@ -380,14 +375,12 @@ PRODUCT_PACKAGES += \
     TetheringConfigOverlay \
     wpa_supplicant \
     wpa_supplicant.conf \
-    wificond \
-    wifilogd \
-    wlutil
+    wificond
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
-	
+
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.lineage.build.vendor_security_patch=2017-08-01
