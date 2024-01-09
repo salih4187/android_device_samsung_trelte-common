@@ -299,7 +299,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/com.samsung.permission.SSENSOR.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.samsung.permission.SSENSOR.xml \
     $(LOCAL_PATH)/configs/permissions/com.sec.feature.spo2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.sec.feature.spo2.xml
 
-# Trust HALTARGET_COPY_OUT_VENDOR
+# Trust HAL
 PRODUCT_PACKAGES += \
     vendor.lineage.trust@1.0-service
 
@@ -351,6 +351,14 @@ PRODUCT_PACKAGES += \
     libexynoscamera_shim \
     libstagefright_shim \
     libshim_gpsd_trelte
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH) \
+    hardware/google/interfaces \
+    hardware/google/pixel \
+    hardware/samsung \
+    hardware/samsung/aidl/power-libperfmgr
 
 # VNDK prebuilts
 PRODUCT_COPY_FILES += \
