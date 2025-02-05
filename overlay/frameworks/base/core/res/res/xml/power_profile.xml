@@ -17,20 +17,11 @@
         <value>3.4</value>
         <value>3.4</value>
     </array>
-    <array name="cpu.speeds">
-        <value>1300000</value>
-        <value>1200000</value>
-        <value>1100000</value>
-        <value>1000000</value>
-        <value>900000</value>
-        <value>800000</value>
-        <value>700000</value>
-        <value>600000</value>
-        <value>500000</value>
-        <value>400000</value>
+    <array name="cpu.clusters.cores">
+        <value>4</value>
+        <value>4</value>
     </array>
-    <item name="cpu.idle">3.56</item>
-    <array name="cpu.active">
+    <array name="cpu.core_power.cluster0">
         <value>150</value>
         <value>138</value>
         <value>129</value>
@@ -42,6 +33,51 @@
         <value>86</value>
         <value>79</value>
     </array>
+    <array name="cpu.core_speeds.cluster0">
+        <value>1300000</value>
+        <value>1200000</value>
+        <value>1100000</value>
+        <value>1000000</value>
+        <value>900000</value>
+        <value>800000</value>
+        <value>700000</value>
+        <value>600000</value>
+        <value>500000</value>
+        <value>400000</value>
+    </array>
+    <array name="cpu.core_power.cluster1">
+        <value>852</value>
+        <value>745</value>
+        <value>626</value>
+        <value>527</value>
+        <value>460</value>
+        <value>410</value>
+        <value>368</value>
+        <value>328</value>
+        <value>291</value>
+        <value>260</value>
+        <value>225</value>
+        <value>197</value>
+        <value>153</value>
+    </array>
+    <array name="cpu.core_speeds.cluster1">
+        <value>1900000</value>
+        <value>1800000</value>
+        <value>1700000</value>
+        <value>1600000</value>
+        <value>1500000</value>
+        <value>1400000</value>
+        <value>1300000</value>
+        <value>1200000</value>
+        <value>1100000</value>
+        <value>1000000</value>
+        <value>900000</value>
+        <value>800000</value>
+        <value>700000</value>
+    </array>
+    <item name="cpu.suspend">3.56</item>
+    <item name="cpu.idle">31.59</item>
+    <item name="wakeup.power">0.15</item>
     <item name="battery.capacity">3220</item>
     <array name="wifi.batchedscan">
         <value>.0002</value>
