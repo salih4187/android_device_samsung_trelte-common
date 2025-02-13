@@ -254,7 +254,6 @@ on post-fs-data
     chmod 0775 /system/lib/drm
 
     restorecon -R /efs
-# ]
 
 on boot
     # permissions for bluetooth.
@@ -759,9 +758,3 @@ on charger
     copy /system/vendor/firmware/battery_data.dat /efs/Battery/battery_data.dat
     chmod 0400 /efs/Battery/battery_data.dat
     write /sys/class/power_supply/battery/batt_update_data "/efs/Battery/battery_data.dat"
-
-# Sensorhub service
-service sensorhubservice /vendor/bin/sensorhubservice
-    class main
-    user system
-    group input

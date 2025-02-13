@@ -13,8 +13,7 @@ on early-init
     write /sys/block/zram0/max_comp_streams 8
 
 on init
-
-    write /sys/module/link_device_lli/parameters/pm_enable 0
+	mkdir /preload 0771 system system
 
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/media_rw/extSdCard 0700 media_rw media_rw
@@ -61,8 +60,8 @@ on init
 
     symlink /data/app /factory
 
-    mkdir /efs 0771 radio system
-    symlink /dev/block/platform/15540000.dwmmc0/by-name/RADIO /dev/mbin0
+    mkdir /efs 0771 system radio
+    symlink /dev/block/mmcblk0p13 /dev/mbin0
     restorecon /dev/mbin0
 
     # msockets for modem sockets with same permissions as /dev/sockets
@@ -373,6 +372,12 @@ on boot
     chown system system /sys/devices/system/cpu/cpu4/cpufreq/interactive/single_exit_time
     chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/single_exit_time
 
+	# Permissions For GPU
+	chown system system /sys/kernel/gpu/gpu_max_clock
+	chmod 0660 /sys/kernel/gpu/gpu_max_clock
+	chown system system /sys/kernel/gpu/gpu_min_clock
+	chmod 0660 /sys/kernel/gpu/gpu_min_clock
+	
     # Assume HMP uses shared cpufreq policy for big CPUs
     chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
     chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
@@ -409,6 +414,8 @@ on fs
     setprop ro.crypto.fuse_sdcard true
 	
     swapon_all /vendor/etc/fstab.universal5433
+
+	restorecon_recursive /efs
 
     # SSWAP
     write /proc/sys/vm/swappiness 100
@@ -447,6 +454,7 @@ on fs
 
 # Fingerprint
     mkdir /dev/validity 0770 system system
+	mkdir /data/validity 0770 system system
 
 # Permissions for ION
     chmod 0660 /sys/class/ion_cma/ion_video_ext/isolated
@@ -560,6 +568,7 @@ on fs
     chown system radio /sys/class/fingerprint/fingerprint/type_check
     chown system radio /sys/class/fingerprint/fingerprint/name
     chown system radio /sys/class/fingerprint/fingerprint/vendor
+
 # Accelerometer_sensor
     chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
     chown system radio /sys/class/sensors/accelerometer_sensor/calibration
@@ -770,6 +779,14 @@ service lpm /vendor/bin/lpm
     capabilities SYS_BOOT
     critical
 
+# SecEDS
+service TvoutService_C /vendor/bin/bintvoutservice
+    class main
+    user system
+    group graphics
+on property:ro.SecEDS.enable=false
+    stop TvoutService_C
+
 on charger
     # Set cpu governor to powersave while in charging mode
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
@@ -806,10 +823,13 @@ service vcsFPService /vendor/bin/vcsFPService
     user root
     group system input wakelock readproc
 
-on property:sys.mobicoredaemon.enable=true
-    write /proc/iccc_ready 1
+# Sensorhub service
+service sensorhubservice /vendor/bin/sensorhubservice
+    class main
+    user system
+    group input
 
-service fingerprintd /system/bin/fingerprintd
+service fingerprintd /vendor/bin/fingerprintd
     class late_start
     user system
     group input
@@ -834,8 +854,43 @@ on property:vold.decrypt=trigger_restart_min_framework
     start vendor.gnss_service
 
 # ARGOSD
-service argos-daemon /vendor/bin/hw/argosd
+service argos-daemon /vendor/bin/argosd
     class main
     user system
     group system radio
 
+# DRK/CS service
+service cs_service /vendor/bin/cs
+    class main
+    user system
+    group system
+    disabled
+
+on property:sys.mobicoredaemon.enable=true
+    start cs_service
+    write /proc/iccc_ready 1
+
+# Secure Storage startup
+service secure_storage /vendor/bin/secure_storage_daemon
+    class core
+    user system
+    group system
+    disabled
+
+on property:ro.securestorage.support=true
+    mkdir /dev/.secure_storage
+    chmod 0711 /dev/.secure_storage
+    chown system system /dev/.secure_storage
+    restorecon -R /dev/.secure_storage
+    start secure_storage
+
+on property:ro.securestorage.knox=true
+    mkdir /dev/.secure_storage
+    chmod 0711 /dev/.secure_storage
+    chown system system /dev/.secure_storage
+    restorecon -R /dev/.secure_storage
+    start secure_storage
+
+# Reactivation lock
+	service reactived /vendor/bin/reactived
+	class late_start

@@ -12,10 +12,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1 \
-	ro.ril.samsung_nextgen_modem=1 \
-	ro.ril.needs_videocall_field=0 \
-	audio_hal.disable_two_mic=true \
-    audio_hal.force_voice_config=wide
+	ro.vendor.audio_hal.disable_two_mic=true \
+    ro.vendor.audio_hal.force_voice_config=wide
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -36,10 +34,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Burn-in protection
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.systemui.burn_in_protection=true
-
+	
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
-    camera2.portability.force_api=1
+	camera2.portability.force_api=1
 	
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -64,11 +62,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.latch_unsignaled=1 \
     debug.renderengine.backend=threaded \
     ro.opengles.version=196610
-
-# Media
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.stagefright.legacyencoder=1 \
-    media.stagefright.less-secure=1
 	
 # Network
 # Define default initial receive window size in segments.
@@ -77,6 +70,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Nfc
 PRODUCT_PROPERTY_OVERRIDES += \
+	ro.nfc.fw_dl_on_boot=false \
     ro.nfc.sec_hal=true \
     ro.nfc.port="I2C"
 

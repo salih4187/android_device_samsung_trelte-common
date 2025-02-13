@@ -48,16 +48,16 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
 	android.hardware.camera.provider@2.4-impl-legacy \
-	android.hardware.camera.provider@2.4-service \
-    camera.universal5433
+	camera.device@1.0-impl-legacy \
+	camera.universal5433
 	
 # Codecs
 PRODUCT_PACKAGES += \
-    libion_exynos	
+    libion_exynos		
 	
 # Configstore
 PRODUCT_PACKAGES += \
-    android.hardware.configstore@1.1-service	
+    android.hardware.configstore@1.1-service
 	
 # DRM
 PRODUCT_PACKAGES += \
@@ -71,7 +71,7 @@ PRODUCT_PACKAGES += \
 	
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1-service \
+	android.hardware.biometrics.fingerprint@2.1-service \
     fingerprint.universal5433 \
     ValidityService	
 
@@ -142,7 +142,7 @@ PRODUCT_COPY_FILES += \
 # Keymaster
 PRODUCT_PACKAGES += \
 	android.hardware.keymaster@4.1-service
-	
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light-service.samsung		
@@ -184,21 +184,15 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/nfc/libnfc-sec-hal.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-sec-hal.conf
 
 PRODUCT_PACKAGES += \
-	libnfc-nci \
-	libnfc_nci_jni \
+	com.android.nfc_extras \
 	NfcNci \
 	Tag \
-	com.android.nfc_extras \
 	android.hardware.nfc@1.0-impl
 
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hce.xml \
 	frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.xml \
 	frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.android.nfc_extras.xml
-
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.nfc.fw_dl_on_boot=false \
-	ro.nfc.port="I2C"
 	
 # OMX
 PRODUCT_PACKAGES += \
@@ -266,19 +260,17 @@ PRODUCT_PACKAGES += \
 
 # Radio
 PRODUCT_PACKAGES += \
-    android.hardware.radio@1.0 \
-    android.hardware.radio@1.1 \
-    android.hardware.radio.deprecated@1.0 \
-    libxml2 \
-    libprotobuf-cpp-full \
-    rild \
-    libril \
-    libreference-ril \
-    libsecril-client \
-    libsecril-client-sap \
-    modemloader \
-    secril_config_svc \
-    Stk
+	libxml2 \
+	libprotobuf-cpp-full \
+	libreference-ril \
+	libril \
+	libsecril-client \
+	libsecril-client-sap \
+	libsecnativefeature \
+	android.hardware.radio@1.0 \
+	android.hardware.radio.deprecated@1.0 \
+	modemloader \
+	rild
     
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init/rild.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/rild.rc	 
@@ -308,7 +300,6 @@ PRODUCT_COPY_FILES += \
     
 # Shims
 PRODUCT_PACKAGES += \
-    libcutils_shim \
     libexynoscamera_shim \
 	libstagefright_shim \
     libshim_gpsd
@@ -338,7 +329,8 @@ PRODUCT_PACKAGES += \
 	
 # VNDK prebuilts
 PRODUCT_COPY_FILES += \
-    prebuilts/vndk/v29/arm/arch-arm-armv7-a-neon/shared/vndk-core/libprotobuf-cpp-lite.so:$(TARGET_COPY_OUT_VENDOR)/lib/libprotobuf-cpp-lite-v29.so
+    prebuilts/vndk/v29/arm/arch-arm-armv7-a-neon/shared/vndk-core/libprotobuf-cpp-lite.so:$(TARGET_COPY_OUT_VENDOR)/lib/libprotobuf-cpp-lite-v29.so \
+    prebuilts/vndk/v29/arm/arch-arm-armv7-a-neon/shared/vndk-sp/libcutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libcutils-v29.so
 	
 # Wifi
 PRODUCT_PACKAGES += \

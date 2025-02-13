@@ -1,4 +1,4 @@
-<manifest version="1.0" type="device" target-level="3">
+<manifest version="1.0" type="device" target-level="legacy">
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
@@ -16,7 +16,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.camera.provider</name>
-        <transport>hwbinder</transport>
+        <transport arch="32">passthrough</transport>
         <fqname>@2.4::ICameraProvider/legacy/0</fqname>
     </hal>
     <hal format="hidl">
@@ -36,11 +36,6 @@
         <fqname>@1.0::ICryptoFactory/default</fqname>
         <fqname>@1.0::IDrmFactory/default</fqname>
         <fqname>@1.0::ICryptoFactory/widevine</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.gatekeeper</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.0::IGatekeeper/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.gnss</name>
@@ -86,10 +81,15 @@
     <hal format="hidl">
         <name>android.hardware.radio</name>
         <transport>hwbinder</transport>
-        <fqname>@1.1::IRadio/slot1</fqname>
-        <fqname>@1.1::IRadio/slot2</fqname>
-        <fqname>@1.1::ISap/slot1</fqname>
-        <fqname>@1.1::ISap/slot2</fqname>
+        <fqname>@1.0::IRadio/slot1</fqname>
+        <fqname>@1.0::IRadio/slot2</fqname>
+        <fqname>@1.0::ISap/slot1</fqname>
+        <fqname>@1.0::ISap/slot2</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.radio.deprecated</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::IOemHook/slot1</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.renderscript</name>
