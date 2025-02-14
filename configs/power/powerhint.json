@@ -105,28 +105,6 @@
             "ResetOnInit": true
         },
         {
-            "Name": "GPUMaxFreq",
-            "Path": "/sys/kernel/gpu/gpu_max_clock",
-            "Values": [
-                "700",
-                "600",
-                "550",
-                "500"
-            ],
-            "DefaultIndex": 0,
-            "ResetOnInit": true
-        },
-        {
-            "Name": "GPUMinFreq",
-            "Path": "/sys/kernel/gpu/gpu_min_clock",
-            "Values": [
-                "420",
-                "350",
-                "266"
-            ],
-            "ResetOnInit": true
-        },
-        {
             "Name": "DoubleTapToWakeEnable",
             "Path": "/sys/class/sec/tsp/cmd",
             "Values": [
@@ -288,24 +266,6 @@
             "Node": "PowerHALMainState",
             "Duration": 0,
             "Value": "VR_SUSTAINED_PERFORMANCE"
-        },
-        {
-            "PowerHint": "EXPENSIVE_RENDERING",
-            "Node": "PowerHALRenderingState",
-            "Duration": 0,
-            "Value": "EXPENSIVE_RENDERING"
-        },
-        {
-            "PowerHint": "EXPENSIVE_RENDERING",
-            "Node": "GPUMinFreq",
-            "Duration": 0,
-            "Value": "420"
-        },
-        {
-            "PowerHint": "EXPENSIVE_RENDERING",
-            "Node": "GPUMaxFreq",
-            "Duration": 0,
-            "Value": "700"
         },
         {
             "PowerHint": "DOUBLE_TAP_TO_WAKE",
