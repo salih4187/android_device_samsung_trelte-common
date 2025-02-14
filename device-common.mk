@@ -10,6 +10,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     AdvancedDisplay
 
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+    $(LOCAL_PATH)/overlay/hardware/samsung/AdvancedDisplay
+
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
