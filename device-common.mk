@@ -6,6 +6,10 @@ PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
+# AdvancedDisplay (MDNIE)
+PRODUCT_PACKAGES += \
+    AdvancedDisplay
+
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
