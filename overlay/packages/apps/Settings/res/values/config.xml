@@ -16,7 +16,7 @@
     <bool name="config_show_homeWake">true</bool>
 
     <!-- Volume Rocker Wake -->
-    <bool name="config_show_volumeRockerWake">false</bool>
+    <bool name="config_show_volumeRockerWake">true</bool>
 
     <!-- Defines the location of the fingerprint sensor on the device
          0 = back
@@ -25,9 +25,6 @@
          3 = right side
     -->
     <integer name="config_fingerprintSensorLocation">1</integer>
-	
-	    <!-- Dashboard number of columns -->
-    <integer name="dashboard_num_columns">1</integer>
 
     <!-- Whether or not the device is capable of multiple levels of vibration intensity.
          Note that this is different from whether it can control the vibration amplitude as some
