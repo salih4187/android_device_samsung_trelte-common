@@ -76,10 +76,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.fastcharge@1.0-service.samsung		
 	
-# FlipFlap
-PRODUCT_PACKAGES += \
-    FlipFlap
-	
 # Fingerprint
 PRODUCT_PACKAGES += \
 	android.hardware.biometrics.fingerprint@2.1-service \
@@ -157,11 +153,7 @@ PRODUCT_PACKAGES += \
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light-service.samsung		
-
-# LiveDisplay
-PRODUCT_PACKAGES += \
-	vendor.lineage.livedisplay@2.0-service.samsung-exynos
-
+	
 # LPM
 PRODUCT_PACKAGES += \
     libsuspend	
