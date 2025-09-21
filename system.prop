@@ -13,9 +13,6 @@ persist.media.treble_omx=false
 # Camera
 camera2.portability.force_api=1
 
-# Boot directly from charger mode
-ro.enable_boot_charger_mode=1
-
 # Graphics
 debug.sf.latch_unsignaled=1
 debug.sf.disable_backpressure=1
