@@ -232,7 +232,7 @@ void Power::setProfile(PowerProfile profile) {
                 set(cpuInteractivePaths.at(1) + "/go_hispeed_load", INTERACTIVE_LOW_GO_HISPEED_LOAD);
                 set(cpuInteractivePaths.at(1) + "/target_loads", INTERACTIVE_LOW_TARGET_LOADS);
                 set(cpuInteractivePaths.at(1) + "/above_hispeed_delay", INTERACTIVE_LOW_ABOVE_HISPEED_DELAY);
-                break;
+            break;
         case PowerProfile::BALANCED:
                 set(cpuInteractivePaths.at(1) + "/min_sample_time", INTERACTIVE_BALANCED_MIN_SAMPLE_TIME);
                 set(cpuInteractivePaths.at(1) + "/hispeed_freq", INTERACTIVE_BALANCED_HISPEED_FREQ);
@@ -256,6 +256,8 @@ void Power::setProfile(PowerProfile profile) {
 void Power::sendBoostpulse() {
 
 	set(cpuInteractivePaths.at(0) + "/boostpulse", "1");
+
+}
 
 void Power::sendBoost(int duration_us) {
 
