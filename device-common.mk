@@ -347,17 +347,16 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl.universal5433 \
     android.hardware.sensors@1.0-service.universal5433 \
     android.hardware.vibrator@1.0-impl \
-    android.hardware.vibrator@1.0-service \
-    sensors.exynos5
+    android.hardware.vibrator@1.0-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/_hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/_hals.conf
-	
+
 # Shims
 PRODUCT_PACKAGES += \
     libcutils_shim \
     libexynoscamera_shim \
-	libstagefright_shim \
+    libstagefright_shim \
     libshim_gpsd
 
 # VNDK prebuilts
