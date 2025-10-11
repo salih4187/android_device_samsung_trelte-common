@@ -185,6 +185,7 @@ PRODUCT_PACKAGES += \
 # IR
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
+    android.hardware.ir@1.0-service \
     consumerir.exynos5
 
 # Key-layout
