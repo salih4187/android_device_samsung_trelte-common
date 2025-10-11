@@ -5,6 +5,16 @@ aaudio.hw_burst_min_usec=2000
 af.fast_track_multiplier=1
 audio_hal.force_voice_config=wide
 
+# Dalvik Properties
+dalvik.vm.image-dex2oat-filter=speed
+dalvik.vm.dex2oat-filter=speed
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=256m
+dalvik.vm.heapsize=512m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=2m
+dalvik.vm.heapmaxfree=8m
+
 # Wifi / WiFi Display / Miracast
 wifi.interface=wlan0
 wlan.wfd.hdcp=disable
