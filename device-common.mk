@@ -184,8 +184,7 @@ PRODUCT_PACKAGES += \
 
 # IR
 PRODUCT_PACKAGES += \
-    android.hardware.ir@1.0-impl \
-    consumerir.exynos5
+    android.hardware.ir@1.0-impl
 
 # Key-layout
 PRODUCT_COPY_FILES += \
