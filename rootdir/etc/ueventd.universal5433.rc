@@ -52,8 +52,8 @@
 # mscalers
 /dev/video50              0660   media      media
 /dev/video51              0660   media      media
-/dev/m2m1shot_scaler0     0660   media     graphics
-/dev/m2m1shot_scaler1     0660   media     graphics
+/dev/m2m1shot_scaler0     0660   cameraserver     m2mscaler
+/dev/m2m1shot_scaler1     0660   cameraserver     m2mscaler
 
 /dev/video55              0666   system     graphics
 /dev/fimg2d               0666   system     graphics
@@ -67,24 +67,24 @@
 /dev/video9               0660   media      drmrpc
 
 # camera
-/dev/video100             0660   media      media
-/dev/video101             0660   media      media
-/dev/video102             0660   media      media
-/dev/video103             0660   media      media
-/dev/video109             0660   media      media
-/dev/video110             0660   media      media
-/dev/video111             0660   media      media
-/dev/video112             0660   media      media
-/dev/video114             0660   media      media
-/dev/video115             0660   media      media
-/dev/video116             0660   media      media
-/dev/video130             0660   media      media
-/dev/video134             0660   media      media
-/dev/video137             0660   media      media
-/dev/video140             0660   media      media
-/dev/video141             0660   media      media
-/dev/video146             0660   media      media
-/dev/video149             0660   media      media
+/dev/video100             0660   cameraserver      cameraserver
+/dev/video101             0660   cameraserver      cameraserver
+/dev/video102             0660   cameraserver      cameraserver
+/dev/video103             0660   cameraserver      cameraserver
+/dev/video109             0660   cameraserver      cameraserver
+/dev/video110             0660   cameraserver      cameraserver
+/dev/video111             0660   cameraserver      cameraserver
+/dev/video112             0660   cameraserver      cameraserver
+/dev/video114             0660   cameraserver      cameraserver
+/dev/video115             0660   cameraserver      cameraserver
+/dev/video116             0660   cameraserver      cameraserver
+/dev/video130             0660   cameraserver      cameraserver
+/dev/video134             0660   cameraserver      cameraserver
+/dev/video137             0660   cameraserver      cameraserver
+/dev/video140             0660   cameraserver      cameraserver
+/dev/video141             0660   cameraserver      cameraserver
+/dev/video146             0660   cameraserver      cameraserver
+/dev/video149             0660   cameraserver      cameraserver
 /dev/media2               0660   media      media
 
 # hevc
