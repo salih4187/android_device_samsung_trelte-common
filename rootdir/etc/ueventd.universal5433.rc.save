@@ -92,11 +92,11 @@
 /dev/video11              0660   media      drmrpc
 
 # jpeg
-/dev/m2m1shot_jpeg	  0660   cameraserver      media
+/dev/m2m1shot_jpeg	  0660   media      media
 /dev/video12              0660   media      media
 
 # audio
-/dev/seiren               0660   mediacodec     drmrpc
+/dev/seiren               0660   mediacodec    drmrpc
 
 # sensor sysfs properties
 /sys/devices/virtual/input/input*	poll_delay	0660	system	radio
