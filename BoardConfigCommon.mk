@@ -156,8 +156,6 @@ USE_OPENGL_RENDERER := true
 # Low memory devices
 MALLOC_SVELTE := true
 
-BOARD_USES_EXYNOS5_COMMON_GRALLOC := true
-
 # Gralloc
 TARGET_USES_GRALLOC1_ADAPTER := true
 
