@@ -46,7 +46,6 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.primary.universal5433 \
     libtinycompress \
-    libseirenhw \
     Audioloader
 
 PRODUCT_COPY_FILES += \
