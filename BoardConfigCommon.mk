@@ -160,6 +160,7 @@ MALLOC_SVELTE := true
 
 # Gralloc
 TARGET_USES_GRALLOC1_ADAPTER := true
+BOARD_USES_EXYNOS5433_GRALLOC := true
 
 # Lineage hardware
 ifneq ($(findstring lineage, $(TARGET_PRODUCT)),)
