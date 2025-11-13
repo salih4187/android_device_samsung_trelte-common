@@ -76,8 +76,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl-legacy \
     camera.device@1.0-impl-legacy \
-    camera.universal5433 \
-    Snap
+    camera.universal5433
 
 # Codecs
 PRODUCT_PACKAGES += \
