@@ -356,7 +356,7 @@ PRODUCT_PACKAGES += \
     libcutils_shim \
     libexynoscamera_shim \
     libstagefright_shim \
-    libshim_gpsd
+    libshim_gpsd_trelte
 
 # VNDK prebuilts
 PRODUCT_COPY_FILES += \
