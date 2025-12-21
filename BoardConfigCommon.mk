@@ -158,6 +158,7 @@ MALLOC_SVELTE := true
 
 # Gralloc
 TARGET_USES_GRALLOC1_ADAPTER := true
+BOARD_USES_EXYNOS5_COMMON_GRALLOC := true
 
 # Lineage hardware
 ifneq ($(findstring lineage, $(TARGET_PRODUCT)),)
@@ -271,7 +272,7 @@ TARGET_LD_SHIM_LIBS := \
 # Legacy BLOB Support
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /system/vendor/bin/hw/rild=27 \
-		/system/bin/mediaserver=22
+    /system/bin/mediaserver=22
 
 
 # Network Routing
@@ -279,9 +280,6 @@ TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
 
 # Faceunlock Package
 TARGET_FACE_UNLOCK_SUPPORTED := true
-
-# WFD
-BOARD_USES_WFD := true
 
 # WiFi
 BOARD_HAVE_SAMSUNG_WIFI          := true
