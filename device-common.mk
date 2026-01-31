@@ -249,7 +249,7 @@ PRODUCT_COPY_FILES += \
 # Memory
 PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
-    memtrack.exynos5
+    android.hardware.memtrack@1.0-service
 
 # Net
 PRODUCT_PACKAGES += \
