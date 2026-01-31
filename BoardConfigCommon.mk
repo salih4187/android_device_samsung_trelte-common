@@ -112,7 +112,6 @@ RED_LED_PATH := "/sys/class/leds/led_r/brightness"
 GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
 BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
-TARGET_PROVIDES_LIBLIGHT := false
 
 # Dexpreopt
 ifeq ($(HOST_OS),linux)
@@ -147,12 +146,6 @@ BOARD_USES_SCALER := true
 BOARD_USES_SCALER_M2M1SHOT := true
 BOARD_USES_DT := true
 
-# Mixer
-BOARD_USE_BGRA_8888 := true
-
-# Graphics
-USE_OPENGL_RENDERER := true
-
 # Low memory devices
 MALLOC_SVELTE := true
 
@@ -182,12 +175,6 @@ TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
 # ION
 TARGET_USES_ION := true
 
-# ConsumerIR from hardware/samsung
-IR_HAL_SUFFIX := exynos5
-
-# Lights
-TARGET_PROVIDES_LIBLIGHT := false
-
 # Enable memfd - needed otherwise you get crashes like Jit thread pool  >>> system_server <<<
 TARGET_HAS_MEMFD_BACKPORT := true
 
@@ -213,9 +200,6 @@ BOARD_USE_VP9ENC_SUPPORT := false
 BOARD_USE_CUSTOM_COMPONENT_SUPPORT := true
 BOARD_USE_VIDEO_EXT_FOR_WFD_HDCP := false
 BOARD_USE_SINGLE_PLANE_IN_DRM := false
-
-# Power
-TARGET_POWERHAL_VARIANT := samsung
 
 # Recovery
 TARGET_RECOVERY_DENSITY := xxhdpi
