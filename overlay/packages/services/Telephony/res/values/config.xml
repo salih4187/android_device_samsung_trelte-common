@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2013 The CyanogenMod Project
+<!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,8 +13,11 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
+<!-- Phone app resources that may need to be customized
+     for different hardware or product builds. -->
 <resources>
-    <!-- The type of sim image to display.
-         0=default sim image, 1=sim on side, 2=sim on back-->
-    <integer name="sim_image_type">2</integer>
+
+    <!-- This device implements a noise suppression device for in call audio-->
+    <bool name="has_in_call_noise_suppression">true</bool>
 </resources>
