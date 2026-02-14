@@ -18,8 +18,8 @@ TARGET_CPU_VARIANT := cortex-a53
 TARGET_BOARD_PLATFORM := exynos5
 TARGET_SLSI_VARIANT := bsp
 TARGET_SOC := exynos5433
-
 TARGET_BOOTLOADER_BOARD_NAME := universal5433
+BUILD_BROKEN_DUP_RULES := true
 
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2017-08-01
@@ -33,9 +33,6 @@ TARGET_USES_64_BIT_BINDER := true
 # Inherit board specific defines
 -include $(LOCAL_PATH)/board/*.mk
 
-# Allow Invalid PThreads
-TARGET_ALLOWS_INVALID_PTHREAD := true
-
 # Init
 TARGET_INIT_VENDOR_LIB := //$(LOCAL_PATH):libinit_trelte
 TARGET_RECOVERY_DEVICE_MODULES := //$(LOCAL_PATH):libinit_trelte
@@ -48,38 +45,12 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3774873600
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 26965164032 # Account for length=-16384
 BOARD_FLASH_BLOCK_SIZE := 4096
-
-BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
 
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
-TARGET_KERNEL_HAVE_EXFAT := true
-TARGET_KERNEL_HAVE_NTFS := true
-
-# Extended FileSystem Support
-TARGET_EXFAT_DRIVER := sdfat
-
-LZMA_RAMDISK_TARGETS := boot,recovery
-
 BOARD_ROOT_EXTRA_FOLDERS += efs
 TARGET_FS_CONFIG_GEN := $(LOCAL_PATH)/config.fs
-
-BUILD_BROKEN_DUP_RULES := true
-
-### KERNEL
-
-BOARD_KERNEL_BASE := 0x10000000
-BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_SEPARATED_DT := true
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
-TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
-BOARD_CUSTOM_BOOTIMG := true
-BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
-TARGET_KERNEL_SOURCE := kernel/samsung/universal5433
-KERNEL_TOOLCHAIN_PREFIX := arm-linux-androideabi-
-BOARD_KERNEL_IMAGE_NAME := zImage
-TARGET_LINUX_KERNEL_VERSION := 3.10
 
 # Ant+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
@@ -107,13 +78,6 @@ TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x2000U
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
 
-# LED
-RED_LED_PATH := "/sys/class/leds/led_r/brightness"
-GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
-BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
-BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
-TARGET_PROVIDES_LIBLIGHT := false
-
 # Dexpreopt
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
@@ -125,47 +89,22 @@ endif
 # Display
 TARGET_SCREEN_DENSITY := 560
 
+# DT
+BOARD_USES_DT := true
+
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
 BOARD_USES_NEON_BLITANTIH := true
 BOARD_USES_FIMGAPI_V4L2 := false
 
-# Fingerprint
-# TARGET_SEC_FP_HAL_VARIANT := bauth
-
-# ValidityService
-BOARD_USES_VALIDITY := true
-
-# KEYSTORE
-BOARD_USES_TRUST_KEYMASTER := true
-
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
-# (G)SCALER
-BOARD_USES_SCALER := true
-BOARD_USES_DT := true
-
-# Mixer
-BOARD_USE_BGRA_8888 := true
-
-# Graphics
-USE_OPENGL_RENDERER := true
-
-# Low memory devices
-MALLOC_SVELTE := true
-
-BOARD_USES_EXYNOS5_COMMON_GRALLOC := false
-BOARD_USES_EXYNOS5433_GRALLOC := true
-
 # Gralloc
-TARGET_USES_GRALLOC1_ADAPTER := true
+BOARD_USES_EXYNOS5_COMMON_GRALLOC := true
 
-# Lineage hardware
-ifneq ($(findstring lineage, $(TARGET_PRODUCT)),)
-JAVA_SOURCE_OVERLAYS := \
-    org.lineageos.hardware|$(LOCAL_PATH)/lineagehw|**/*.java
-endif
+# (G)SCALER
+BOARD_USES_SCALER_M2M1SHOT := true
 
 # HDMI
 BOARD_HDMI_INCAPABLE := true
@@ -180,14 +119,29 @@ SKIP_DISPLAY_BLANK_CTRL := true
 # Include path
 TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
 
-# ION
-TARGET_USES_ION := true
+### KERNEL
+BOARD_KERNEL_BASE := 0x10000000
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
+BOARD_CUSTOM_BOOTIMG := true
+BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
+TARGET_KERNEL_SOURCE := kernel/samsung/universal5433
+BOARD_KERNEL_IMAGE_NAME := zImage
+TARGET_LINUX_KERNEL_VERSION := 3.10
 
-# ConsumerIR from hardware/samsung
-IR_HAL_SUFFIX := exynos5
+# KEYSTORE
+BOARD_USES_TRUST_KEYMASTER := true
 
-# Lights
-TARGET_PROVIDES_LIBLIGHT := false
+# LED
+RED_LED_PATH := "/sys/class/leds/led_r/brightness"
+GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
+BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
+BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
+
+# Low memory devices
+MALLOC_SVELTE := true
 
 # Samsung OpenMAX Video
 BOARD_USE_STOREMETADATA := true
@@ -212,17 +166,15 @@ BOARD_USE_CUSTOM_COMPONENT_SUPPORT := true
 BOARD_USE_VIDEO_EXT_FOR_WFD_HDCP := false
 BOARD_USE_SINGLE_PLANE_IN_DRM := false
 
-# Power
-TARGET_POWERHAL_VARIANT := samsung
+# Samsung Seiren audio
+BOARD_USE_ALP_AUDIO := true
+BOARD_USE_SEIREN_AUDIO := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.universal5433
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_HAS_DOWNLOAD_MODE := true
-
-# Samsung Seiren audio
-BOARD_USE_ALP_AUDIO := true
-BOARD_USE_SEIREN_AUDIO := true
+LZMA_RAMDISK_TARGETS := recovery
 
 # SELinux
 #BOARD_SEPOLICY_DIRS += device/samsung/trelte-common/sepolicy
@@ -235,22 +187,16 @@ TARGET_NO_SENSOR_PERMISSION_CHECK := true
 TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libexynoscamera.so|libexynoscamera_shim.so \
     /system/vendor/bin/gpsd|libshim_gpsd.so \
-     /system/bin/mediaserver|/vendor/lib/libstagefright_shim.so
+    /system/bin/mediaserver|/vendor/lib/libstagefright_shim.so
 
 # Legacy BLOB Support
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /system/vendor/bin/hw/rild=27 \
-		/system/bin/mediaserver=22
+    /system/bin/mediaserver=22
 
 
 # Network Routing
 TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
-
-# Faceunlock Package
-TARGET_FACE_UNLOCK_SUPPORTED := true
-
-# WFD
-BOARD_USES_WFD := true
 
 # WiFi
 BOARD_HAVE_SAMSUNG_WIFI          := true
@@ -269,8 +215,8 @@ WPA_SUPPLICANT_USE_HIDL          := true
 
 # WiFi Configs
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/vendor/etc/wifi/wpa_supplicant_overlay.conf \
-	$(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/vendor/etc/wifi/p2p_supplicant_overlay.conf
+    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/vendor/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/vendor/etc/wifi/p2p_supplicant_overlay.conf
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += $(LOCAL_PATH)
