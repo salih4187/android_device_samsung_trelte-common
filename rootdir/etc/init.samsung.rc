@@ -730,7 +730,7 @@ on boot
     chown system system /sys/class/timed_output/vibrator/multi_freq
 
 # MobiCore
-service mobicore /vendor/bin/mcDriverDaemon -r /vendor/app/FFFFFFFF000000000000000000000001.drbin -r /vendor/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin /vendor/app/mcRegistry/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
+service mobicore /vendor/bin/mcDriverDaemon -r /vendor/app/FFFFFFFF000000000000000000000001.drbin -r /vendor/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin /vendor/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
     class core
     user system
     group system
