@@ -60,10 +60,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
-# Boot directly from charger mode
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.enable_boot_charger_mode=1
-
 # Enable ADB Debugging By Default & Disable USB Debugging Popup
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.service.adb.enable=1 \

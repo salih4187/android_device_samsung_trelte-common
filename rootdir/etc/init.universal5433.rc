@@ -8,60 +8,18 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
-
-    # RIL <-> audioserver comm
-    chmod 0644 /proc/cmdline
-
-    symlink /dev/block/platform/15540000.dwmmc0/by-name/RADIO /dev/mbin0
-    restorecon /dev/mbin0
-    symlink  /sys/devices/10f24000.mipi-lli /dev/mipi-lli
-    write /sys/module/link_device_lli/parameters/pm_enable 0
-
-    # See storage config details at http://source.android.com/tech/storage/
-    mkdir /mnt/media_rw/extSdCard 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveA 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveB 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveC 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveD 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveE 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveF 0700 media_rw media_rw
-
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
 
-    # CPUSETS permission
-    chmod 0660 /dev/cpuctl
     # Support legacy paths
-    symlink /sdcard /storage/sdcard0
-    symlink /storage/usbdisk /mnt/usbdisk
+    symlink /sdcard /mnt/sdcard
 
     export EXTERNAL_STORAGE /sdcard
 
-    # map "real" external storages paths also in same way. backwards compatibility.
-    symlink /storage/extSdCard /mnt/extSdCard
-    symlink /storage/UsbDriveA /mnt/UsbDriveA
-    symlink /storage/UsbDriveB /mnt/UsbDriveB
-    symlink /storage/UsbDriveC /mnt/UsbDriveC
-    symlink /storage/UsbDriveD /mnt/UsbDriveD
-    symlink /storage/UsbDriveE /mnt/UsbDriveE
-    symlink /storage/UsbDriveF /mnt/UsbDriveF
-
-    export SECONDARY_STORAGE /storage/extSdCard
-
-    mkdir /storage/extSdCard 0700 root root
-    mkdir /storage/UsbDriveA 0700 root root
-    mkdir /storage/UsbDriveB 0700 root root
-    mkdir /storage/UsbDriveC 0700 root root
-    mkdir /storage/UsbDriveD 0700 root root
-    mkdir /storage/UsbDriveE 0700 root root
-    mkdir /storage/UsbDriveF 0700 root root
-
-    symlink /sdcard1 /storage/sdcard1
-    symlink /sdcard1 /external_sd
+    #export SECONDARY_STORAGE /storage/extSdCard
 
     symlink /data/app /factory
-
 
     mkdir /efs 0771 radio system
     symlink /dev/block/platform/15540000.dwmmc0/by-name/RADIO /dev/mbin0
@@ -110,23 +68,7 @@ on post-fs-data
     mkdir /data/firmware 0770 media system
     chown media system /data/firmware
 
-    # Vibrations
-    chown system system /sys/devices/virtual/timed_output/vibrator/enable
-    chown system system /sys/devices/virtual/timed_output/vibrator/intensity
-    # Default to 80% vibrator strength
-    write /sys/devices/virtual/timed_output/vibrator/intensity 8000
-
 on boot
-
-    # Ensure all CPUs are online (big cluster)
-    write /sys/devices/system/cpu/cpu4/online 1
-
-    # Update cpusets now that processors are up
-    write /dev/cpuset/foreground/cpus 0-7
-    write /dev/cpuset/foreground/boost/cpus 4-7
-    write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0-3
-
     # Reduce reserved lowmem from ~48MB to ~12MB
     write /proc/sys/vm/lowmem_reserve_ratio "128 128"
 
@@ -145,33 +87,15 @@ on boot
     mkdir /efs/FactoryApp 0775 system system
 
     # SSWAP
-    write /proc/sys/vm/swappiness 160
+    # write /proc/sys/vm/swappiness 190
 
     # For kernel lock in BT/WiFi race condtion
     chmod 0600 /dev/btlock
     chown bluetooth bluetooth /dev/btlock
 
-#Store Gyro cal data
-    chown system system /efs/FactoryApp/gyro_cal_data
-    chmod 0660 /efs/FactoryApp/gyro_cal_data
-
-    # Define TCP buffer sizes for various networks
-    #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.default 4096,87380,704512,4096,16384,110208		
-    setprop net.tcp.buffersize.wifi    524288,1048576,4525824,524288,1048576,4525824
-    setprop net.tcp.buffersize.lte     524288,1048576,2560000,524288,1048576,2560000
-    setprop net.tcp.buffersize.umts    4094,87380,704512,4096,16384,110208
-    setprop net.tcp.buffersize.hspa    4094,87380,704512,4096,16384,262144
-    setprop net.tcp.buffersize.hsupa   4094,87380,704512,4096,16384,262144
-    setprop net.tcp.buffersize.hsdpa   4094,87380,704512,4096,16384,262144
-    setprop net.tcp.buffersize.hspap   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
-    setprop net.tcp.buffersize.gprs    4092,30000,30000,4096,8760,11680
-    setprop net.tcp.buffersize.evdo    4094,87380,262144,4096,16384,262144
-
     # Assign TCP buffer thresholds to be ceiling value of technology maximums
     # Increased technology maximums should be reflected here.
-    write /proc/sys/net/core/rmem_max  1048576
+    write /proc/sys/net/core/rmem_max  2097152
     write /proc/sys/net/core/wmem_max  2097152
 
 	# DualWave
@@ -193,10 +117,6 @@ on boot
 
 # CS socket
     mkdir /dev/socket/cs_socket 0770 system system
-
-# RTC logging daemon
-    chmod 0770 /system/bin/rtc_log.sh
-    chown system system /system/bin/rtc_log.sh
 
     # PMS DVFS
     chown radio system /sys/power/cpufreq_table
@@ -302,15 +222,6 @@ on boot
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
     chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 
-
-    # Wait for up to 5 seconds - the CPU big cluster is slow to come online
-    # Permission settings below fail to take effect unless we wait for
-    # the CPU to wake up as sysfs entries are not created
-    # In reality, the cluster should be online as the screen is on during the boot
-    # process and therefore the call will return immediately
-
-    wait /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
-
     chown system system /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
     chmod 0660 /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
     chown system system /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
@@ -394,20 +305,6 @@ on fs
     mount_all /vendor/etc/fstab.universal5433
     setprop ro.crypto.fuse_sdcard true
 
-    # Start HW service manager early
-    start hwservicemanager
-
-# Restore the previous batt_capacity_max (if it exists)
-    copy /efs/Battery/prev_batt_capacity_max /sys/class/power_supply/battery/batt_capacity_max
-
-on late-fs
-    # Start services for bootanim
-    start servicemanager
-    start surfaceflinger
-    start bootanim
-    start vendor.configstore-hal
-    start vendor.gralloc-2-0
-
 # MTP device permission
     chmod 0660 /dev/usb_mtp_gadget
     chown system system /dev/usb_mtp_gadget
@@ -415,17 +312,6 @@ on late-fs
 # Terminal version permission
     chown system system /sys/class/android_usb/android0/terminal_version
     chmod 0660 /sys/class/android_usb/android0/terminal_version
-
-# Permissions for backlight
-    chown system system /sys/class/backlight/panel/brightness
-
-# Permissions for LCD
-    chown system radio /sys/class/lcd/panel/manufacture_code
-    chown system radio /sys/class/lcd/panel/lcd_type
-    chown system system /sys/class/lcd/panel/power_reduce
-    chown system system /sys/class/lcd/panel/siop_enable
-    chown system system /sys/class/lcd/panel/temperature
-    chown system system /sys/class/lcd/panel/lux
 
 # for datarouter
     chown system system /dev/dun
@@ -468,23 +354,12 @@ on late-fs
     chown system system /sys/class/sec/sec_touchkey/input/enabled
 
 # Permissions for epen
-    chmod 0660 /dev/input/event18
-    chmod 0660 /dev/input/event19
-    chown system input /dev/input/event18
-    chown system input /dev/input/event19
-    chmod 0660 /sys/class/input/input18/enabled
-    chown system system /sys/class/input/input18/enabled
     chown system radio /sys/class/sec/sec_epen/epen_firm_update
     chown system radio /sys/class/sec/sec_epen/epen_reset
     chown system radio /sys/class/sec/sec_epen/epen_reset_result
     chown system radio /sys/class/sec/sec_epen/epen_checksum
     chown system radio /sys/class/sec/sec_epen/epen_checksum_result
     chown system radio /sys/class/sec/sec_epen/epen_saving_mode
-    chown system radio /sys/class/sec/sec_epen/epen_connection
-    chown system radio /sys/class/sec/sec_epen/epen_tuning_version
-    chown system radio /sys/class/sec/sec_epen/epen_firm_update_status
-    chown system radio /sys/class/sec/sec_epen/epen_firm_version
-    chown system radio /sys/class/sec/sec_epen/epen_delay_time
     chown system radio /sys/class/sec/sec_epen/boost_level
     chown system system /sys/class/sec/sec_epen/input/enabled
 
@@ -498,8 +373,6 @@ on late-fs
 # GPS
     chown root system /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 0664 /sys/class/sec/gps/GPS_PWR_EN/value
-    mkdir /data/system 0771 system system
-    chown system system /data/system
     mkdir /data/system/gps 0771 system system
     chown system system /data/system/gps
     rm /data/system/gps/gps_started
@@ -676,9 +549,6 @@ on late-fs
     chown system system /sys/class/mdnie/mdnie/lux
     chmod 0660 /sys/class/mdnie/mdnie/lux
 
-# Reset mDNIe scenario
-     write /sys/class/mdnie/mdnie/scenario 0
-
 # Copy DRM Key
     copy /system/app/wv.keys /factory/wv.keys
 
@@ -739,14 +609,7 @@ on property:ro.debuggable=1
     chmod 0666 /sys/class/mhl/test_v2
     chmod 0666 /sys/class/mhl/connection
 
-# permission for CHARGING
-    chown system radio /sys/class/power_supply/battery/batt_discharging_check
-    chown system radio /sys/class/power_supply/battery/batt_discharging_check_adc
-    chown system radio /sys/class/power_supply/battery/batt_self_discharging_control
-
 on property:sys.boot_completed=1
-    write /proc/sys/vm/dirty_bytes 31457280
-    write /proc/sys/vm/dirty_background_bytes 15728640
 	
     # ZRAM setup
     write /sys/block/zram0/comp_algorithm lz4
@@ -759,15 +622,9 @@ on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
 
-# LPM
+# Offline Charging
 on property:ro.bootmode=charger
     class_start charger
-	start lpm
-	
-service lpm /vendor/bin/lpm
-    class charger
-    capabilities SYS_BOOT
-    critical
 
 on charger
     # Set cpu governor to powersave while in charging mode
@@ -775,16 +632,6 @@ on charger
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
-
-service cameraserver /system/bin/cameraserver
-    class main
-    user cameraserver
-    group media_rw audio camera drmrpc inet shell sdcard_r system
-
-on shutdown
-    # Fix permissions then store the current batt_capacity_max value in the EFS partition
-    chmod 600 /sys/class/power_supply/battery/batt_capacity_max
-    copy /sys/class/power_supply/battery/batt_capacity_max /efs/Battery/prev_batt_capacity_max
 
 # SensorHub (Location Hub)
 service lhd /system/vendor/bin/lhd /system/vendor/etc/lhd.conf
@@ -808,11 +655,6 @@ service vcsFPService /vendor/bin/vcsFPService
 on property:sys.mobicoredaemon.enable=true
     write /proc/iccc_ready 1
 
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-    group input
-
 # GPS
 service gpsd /vendor/bin/gpsd -c /vendor/etc/gps.xml
     class main
@@ -832,20 +674,9 @@ on property:vold.decrypt=trigger_restart_framework
 on property:vold.decrypt=trigger_restart_min_framework
     start vendor.gnss_service
 
-service swapon /sbin/sswap -s -f 1536
-    class core
-    user root
-    group root
-    oneshot
-
 # ARGOSD
 service argos-daemon /vendor/bin/argosd
     class main
     user system
     group system radio
-
-service loggy /system/bin/sh /system/vendor/etc/init/hw/loggy.sh
-    class main
-    user root
-    oneshot
 
