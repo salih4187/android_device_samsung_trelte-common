@@ -115,7 +115,6 @@ DEVICE_MANIFEST_FILE := device/samsung/trelte-common/manifest.xml
 
 # HWCServices
 #BOARD_USES_HWC_SERVICES := true
-SKIP_DISPLAY_BLANK_CTRL := true
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
