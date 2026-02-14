@@ -33,9 +33,8 @@ lib/libhwjpeg.so:vendor/lib/libhwjpeg.so
 vendor/firmware/setfile_6d1.bin
 vendor/firmware/setfile_imx240.bin
 
-# Graphics - from A810F - A810FXXS2CTJ2
-vendor/lib/egl/libGLES_mali.so|603f324292c9117945f8e3139c07a769e0361c81
-vendor/lib/egl/libGLES_mali.so:vendor/lib/hw/vulkan.exynos5.so|603f324292c9117945f8e3139c07a769e0361c81
+# Graphics - from SCV32 - SCV32KDU1CVG1
+vendor/lib/egl/libGLES_mali.so|fe15d2d8a0060022650631cf4e481c377241b6e7
 
 # OMX - from A600F - N935FXXS7CTJ2
 vendor/lib/libExynosOMX_Core.so|53d08da035d42cd140b162b62be88abdab59e1c5
