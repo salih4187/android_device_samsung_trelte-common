@@ -18,13 +18,6 @@
 */
 -->
 <resources>
-    <!-- Defines the actions shown in advanced reboot submenu -->
-    <string-array name="config_restartActionsList">
-        <item>restart</item>
-        <item>restart_recovery</item>
-        <item>restart_download</item>
-     </string-array>
-
     <!-- Indicate whether encryption causes significant performances loss.
          This MUST NOT be set to true on devices produced in 2016 or later -->
     <bool name="config_trustLegacyEncryption">true</bool>
@@ -40,12 +33,11 @@
          LIGHTS_SEGMENTED_BATTERY_LED = 16
          LIGHTS_ADJUSTABLE_NOTIFICATION_LED_BRIGHTNESS = 32
          LIGHTS_BATTERY_LED = 64
-         For example, a device with notification and battery lights that supports
-         pulsating and RGB control would set this config to 75. -->
-    <integer name="config_deviceLightCapabilities">105</integer>
 
-    <!-- BurnIn protection. This should be enabled on devices that have OLED displays -->
-    <bool name="config_enableBurnInProtection">true</bool>
+         For example, a device with notification and battery lights
+         that support pulsating and RGB control would set this config
+         to 75. -->
+    <integer name="config_deviceLightCapabilities">75</integer>
 
     <!-- Hardware keys present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
@@ -75,16 +67,21 @@
          config to 7. -->
     <integer name="config_deviceHardwareWakeKeys">65</integer>
 
-    <!-- Control the behavior when the user long presses the app switch button.
-            0 - Nothing
-            1 - Menu key
-            2 - Recent apps view in SystemUI
-            3 - Launch assist intent
-            4 - Voice Search
-            5 - In-app Search
-         This needs to match the constants in
-         services/core/java/com/android/server/policy/policy/impl/PhoneWindowManager.java
+    <!-- BurnIn protection. This should be enabled on devices that have OLED displays -->
+    <bool name="config_enableBurnInProtection">true</bool>
+
+    <!-- Whether to post reset runnable for all clients. Needed for some older
+        vendor fingerprint HAL implementations. -->
+    <bool name="config_fingerprintPostResetRunnableForAllClients">true</bool>
+
+    <!-- Whether to cleanup fingerprints upon connection to the daemon and when user switches -->
+    <bool name="config_cleanupUnusedFingerprints">false</bool>
+
+    <!-- Button backlight control. Possible values are:
+            0 - Not supported
+            1 - Supported, but only on/off mode
+            2 - Supported with variable brightness control
     -->
-    <integer name="config_longPressOnAppSwitchBehavior">1</integer>
+    <integer name="config_deviceSupportsButtonBrightnessControl">1</integer>
 
 </resources>
