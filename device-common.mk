@@ -274,13 +274,14 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-service.universal5433
+    android.hardware.power@1.0-service.exynos
 
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.universal5433 \
     init.universal5433.rc \
     init.universal5433.usb.rc \
+    init.power.rc \
     init.samsung.rc \
     init.wifi.rc \
     ueventd.universal5433.rc
