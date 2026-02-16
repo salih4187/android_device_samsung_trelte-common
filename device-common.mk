@@ -1,18 +1,33 @@
+#
+# Copyright (C) 2026 The LineageOS Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 
-PRODUCT_CHARACTERISTICS := phonemedia
+LOCAL_PATH := device/samsung/trelte-common
 
 # Inherit products
 -include $(LOCAL_PATH)/product/*.mk
 
+PRODUCT_ENFORCE_RRO_TARGETS := *
+
+# Overlay
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay
+
 # Common inherits
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
-# APN Definitions - override incomplete/broken lineageos version with Samsung version
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/telephony/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml \
-    $(LOCAL_PATH)/configs/telephony/spn-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/spn-conf.xml
-
 
 # ANT+
 PRODUCT_PACKAGES += \
@@ -22,9 +37,8 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio@4.0-impl \
-    android.hardware.audio@4.0-implmsd \
-    android.hardware.audio.effect@4.0-impl \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
@@ -53,7 +67,7 @@ PRODUCT_PACKAGES += \
     libbt-vendor
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.bt.bdaddr_path="/efs/bluetooth/bt_addr"
+    ro.bt.bdaddr_path="/efs/bluetooth/bt_addr"
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bluetooth/bt_vendor.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/bluetooth/bt_vendor.conf
@@ -63,14 +77,9 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl-legacy \
     camera.device@1.0-impl-legacy \
     libexynoscamera_shim \
-	libstagefright_shim \
+    libstagefright_shim \
     camera.universal5433 \
     Snap
-
-# Codecs
-PRODUCT_PACKAGES += \
-    libstagefrighthw \
-    libion_exynos
 
 # Configstore
 PRODUCT_PACKAGES += \
@@ -92,6 +101,10 @@ PRODUCT_COPY_FILES += \
 # LiveDisplay
 PRODUCT_PACKAGES += \
     vendor.lineage.livedisplay@2.0-service.samsung-exynos
+
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -123,9 +136,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_k.mk)
 PRODUCT_PACKAGES += \
     FlipFlap
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/flp.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/flp.conf
-
 # Gps
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl.universal5433 \
@@ -133,13 +143,9 @@ PRODUCT_PACKAGES += \
     libshim_gpsd
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/gps/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf \
-    $(LOCAL_PATH)/configs/gps/gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/gps.xml
-
-# Graphics
-PRODUCT_AAPT_CONFIG := xlarge
-PRODUCT_AAPT_PREF_CONFIG := 560dpi
-PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
+    $(LOCAL_PATH)/configs/gps/flp.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/flp.conf \
+    $(LOCAL_PATH)/configs/gps/gps.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/gps.conf \
+    $(LOCAL_PATH)/configs/gps/gps.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/gps.xml
 
 PRODUCT_PACKAGES += \
     libion \
@@ -154,15 +160,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.health@2.0-impl \
     android.hardware.health@2.0-service
-
-# LPM
-PRODUCT_PACKAGES += \
-    libsuspend
-
-# HIDL
-PRODUCT_PACKAGES += \
-    android.hidl.base@1.0 \
-    android.hidl.manager@1.0
 
 # IR
 PRODUCT_PACKAGES += \
@@ -187,7 +184,7 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
     android.hardware.keymaster@3.0-service \
     keystore.exynos5
-	
+
 # Mobicore
 PRODUCT_PACKAGES += \
     mcDriverDaemon \
@@ -207,24 +204,16 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
     $(LOCAL_PATH)/configs/media/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
 
-# Memory
+# Memory Tracker HAL
 PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
-    memtrack.exynos5
-
-# MobiCore
-#PRODUCT_PACKAGES += \
-#   mcDriverDaemon
+    android.hardware.memtrack@1.0-service
 
 # Net
 PRODUCT_PACKAGES += \
     android.system.net.netd@1.0 \
     libandroid_net \
     netutils-wrapper-1.0
-
-# Overlay
-DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -274,7 +263,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/com.samsung.permission.HRM_EXT.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.samsung.permission.HRM_EXT.xml \
     $(LOCAL_PATH)/configs/permissions/com.samsung.permission.SSENSOR.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.samsung.permission.SSENSOR.xml \
     $(LOCAL_PATH)/configs/permissions/com.sec.feature.spo2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.sec.feature.spo2.xml
-# Trust HALTARGET_COPY_OUT_VENDOR
+
+# Trust HAL
 PRODUCT_PACKAGES += \
     vendor.lineage.trust@1.0-service
 
@@ -293,8 +283,7 @@ PRODUCT_PACKAGES += \
     init.universal5433.usb.rc \
     init.samsung.rc \
     init.wifi.rc \
-    ueventd.universal5433.rc \
-    sswap
+    ueventd.universal5433.rc
 
 # RCS
 PRODUCT_PACKAGES += \
@@ -306,10 +295,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
 
-# RRO
-PRODUCT_ENFORCE_RRO_TARGETS := \
-    framework-res
-
 # Seccomp policy
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy
@@ -319,25 +304,14 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl.universal5433 \
     android.hardware.sensors@1.0-service.universal5433 \
     android.hardware.vibrator@1.0-impl \
-    android.hardware.vibrator@1.0-service \
-    sensors.exynos5
+    android.hardware.vibrator@1.0-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/_hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/_hals.conf
 
-# Setup dalvik vm configs
-$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
-
 # TextClassifier smart selection model files
 PRODUCT_PACKAGES += \
     textclassifier.smartselection.bundle1
-
-# Tinyalsa utilities
-PRODUCT_PACKAGES += \
-    tinyplay \
-    tinycap \
-    tinymix \
-    tinypcminfo
 
 # USB HAL
 PRODUCT_PACKAGES += \
@@ -359,7 +333,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
-	
+
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.lineage.build.vendor_security_patch=2017-08-01
@@ -373,7 +347,3 @@ $(call inherit-product, hardware/samsung_slsi/exynos5433/exynos5433.mk)
 
 # Vendor
 $(call inherit-product, vendor/samsung/trelte-common/trelte-common-vendor.mk)
-
-# call Samsung LSI board support package
-#$(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
-#$(call inherit-product, hardware/samsung_slsi-cm/exynos5433/exynos5433.mk)

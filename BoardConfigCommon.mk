@@ -89,6 +89,7 @@ endif
 
 # Display
 TARGET_SCREEN_DENSITY := 560
+BOARD_USES_WINDOW_UPDATE := true
 
 # DT
 BOARD_USES_DT := true
@@ -130,6 +131,7 @@ BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/samsung/universal5433
 BOARD_KERNEL_IMAGE_NAME := zImage
 TARGET_LINUX_KERNEL_VERSION := 3.10
+TARGET_BOARD_KERNEL_HEADERS := hardware/samsung_slsi/exynos/kernel-3.10-headers/kernel-headers
 
 # KEYSTORE
 BOARD_USES_TRUST_KEYMASTER := true
@@ -186,7 +188,7 @@ TARGET_NO_SENSOR_PERMISSION_CHECK := true
 # Shims
 TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libexynoscamera.so|libexynoscamera_shim.so \
-    /system/vendor/bin/gpsd|libshim_gpsd.so \
+    /system/vendor/bin/gpsd|/vendor/lib/libshim_gpsd.so \
     /system/bin/mediaserver|/vendor/lib/libstagefright_shim.so
 
 # Legacy BLOB Support

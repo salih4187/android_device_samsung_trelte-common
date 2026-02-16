@@ -298,9 +298,6 @@ on boot
 # MIF
     write /sys/module/modem_modemctl_device_m74xx/parameters/cp_watchdog_enable 1
 
-    # WLAN
-    write /proc/sys/net/ipv4/tcp_adv_win_scale  2
-
 on fs
     mount_all /vendor/etc/fstab.universal5433
     setprop ro.crypto.fuse_sdcard true
@@ -656,7 +653,7 @@ on property:sys.mobicoredaemon.enable=true
     write /proc/iccc_ready 1
 
 # GPS
-service gpsd /vendor/bin/gpsd -c /vendor/etc/gps.xml
+service gpsd /vendor/bin/gpsd -c /system/etc/gps.xml
     class main
     user gps
     group system inet net_raw wakelock
