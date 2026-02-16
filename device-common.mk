@@ -19,8 +19,6 @@ LOCAL_PATH := device/samsung/trelte-common
 # Inherit products
 -include $(LOCAL_PATH)/product/*.mk
 
-PRODUCT_ENFORCE_RRO_TARGETS := *
-
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
