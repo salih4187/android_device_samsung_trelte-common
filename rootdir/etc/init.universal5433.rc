@@ -377,17 +377,12 @@ on fs
     rm /data/system/gps/beidou_started
     rm /data/system/gps/smd_started
     rm /data/system/gps/sv_cno.info
-    symlink /data/system/gps /data/gps
-    symlink /data/system/gps /data/system/gps/gps
 
 # Audio (Earjack)
     chown system radio /sys/class/audio/earjack/select_jack
     chown system radio /sys/class/audio/earjack/key_state
     chown system radio /sys/class/audio/earjack/state
-    chown system radio /sys/class/audio/earjack/mic_adc
     chown system radio /sys/class/dsm/max98504/dsm_log
-    mkdir /data/firmware 0770 media system
-    chown media system /data/firmware
 
 # Permissions for System LSI NFC
 # NFC : Permissions for NFC
