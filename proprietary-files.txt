@@ -163,7 +163,7 @@ vendor/firmware/seiren_fw_sram.bin
 lib/libaudioroute.so|46fcafe8de5c4fe078ad9e9e613bc260fd137106
 
 # Sensors HAL
-lib/hw/sensors.universal5433.so:vendor/lib/sensors.vendor.tre.so
+lib/hw/sensors.universal5433.so:vendor/lib/sensors.vendor.universal5433.so
 
 # HeartRate Monitor
 lib/libhr.so:vendor/lib/libhr.so
@@ -235,9 +235,6 @@ etc/plmn_delta.bin
 lib/libprotobuf-cpp-full.so:vendor/lib/libprotobuf-cpp-fooo.so
 lib/libsecnativefeature.so:vendor/lib/libsecnativefeature.so
 lib/libfloatingfeature.so:vendor/lib/libfloatingfeature.so
-
-# Reactivation Lock
-bin/reactived
 
 # Widevine (Google angler - OPR6.170623.017)
 vendor/lib/mediadrm/libwvdrmengine.so|2f70d96729bc35389d98ab3a1e8f48f4f7b659c2
