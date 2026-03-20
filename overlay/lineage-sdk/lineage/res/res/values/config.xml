@@ -22,6 +22,13 @@
          This MUST NOT be set to true on devices produced in 2016 or later -->
     <bool name="config_trustLegacyEncryption">true</bool>
 
+    <!-- Defines the actions shown in advanced reboot submenu -->
+    <string-array name="config_restartActionsList">
+        <item>restart</item>
+        <item>restart_recovery</item>
+        <item>restart_download</item>
+     </string-array>
+
     <!-- All the capabilities of the LEDs on this device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following capabilities present:
