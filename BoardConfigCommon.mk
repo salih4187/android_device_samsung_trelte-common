@@ -114,9 +114,6 @@ BOARD_HDMI_INCAPABLE := true
 # Hidl
 DEVICE_MANIFEST_FILE := device/samsung/trelte-common/manifest.xml
 
-# HWCServices
-#BOARD_USES_HWC_SERVICES := true
-
 # Include path
 TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
 

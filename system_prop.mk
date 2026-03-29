@@ -72,18 +72,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
-# Enable ADB Debugging By Default & Disable USB Debugging Popup
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.service.adb.enable=1 \
-    persist.service.debuggable=1 \
-    persist.sys.usb.config=mtp,adb
-
-# ADB Insecure
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.secure=0 \
-    ro.adb.secure=0 \
-    ro.debuggable=1
-
 # USB
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.usb.ffs.aio_compat=1
