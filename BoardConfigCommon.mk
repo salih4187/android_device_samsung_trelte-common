@@ -149,10 +149,6 @@ BOARD_USES_DT := true
 # Low memory devices
 MALLOC_SVELTE := true
 
-# Gralloc
-TARGET_USES_GRALLOC1_ADAPTER := true
-BOARD_USES_EXYNOS5_COMMON_GRALLOC := true
-
 # Lineage hardware
 ifneq ($(findstring lineage, $(TARGET_PRODUCT)),)
 JAVA_SOURCE_OVERLAYS := \
