@@ -626,7 +626,7 @@ on charger
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
 
 # SensorHub (Location Hub)
-service lhd /system/vendor/bin/lhd /system/vendor/etc/lhd.conf
+service lhd /system/bin/lhd /system/etc/lhd.conf
     class main
     user gps
     group system inet net_raw
@@ -639,7 +639,7 @@ service lhd /system/vendor/bin/lhd /system/vendor/etc/lhd.conf
     # setprop sys.usb.config charging
 
 # SENSOR FRAMEWORK : starts fingerprintService
-service vcsFPService /vendor/bin/vcsFPService
+service vcsFPService /system/bin/vcsFPService
     class late_start
     user root
     group system input wakelock readproc
@@ -648,7 +648,7 @@ on property:sys.mobicoredaemon.enable=true
     write /proc/iccc_ready 1
 
 # GPS
-service gpsd /vendor/bin/gpsd -c /system/etc/gps.xml
+service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     class main
     user gps
     group system inet net_raw wakelock
@@ -667,7 +667,7 @@ on property:vold.decrypt=trigger_restart_min_framework
     start vendor.gnss_service
 
 # ARGOSD
-service argos-daemon /vendor/bin/argosd
+service argos-daemon /system/bin/argosd
     class main
     user system
     group system radio
