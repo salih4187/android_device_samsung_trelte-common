@@ -1,6 +1,7 @@
 cc_library_shared {
     name: "libshim_gpsd",
-	
+	proprietary: true,
+
     srcs: [
 		"gpsd.cpp",
     ],
