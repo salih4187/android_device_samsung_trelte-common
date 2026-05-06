@@ -57,7 +57,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196610 \
     debug.sf.latch_unsignaled=1 \
     debug.renderengine.backend=threaded \
-    debug.sf.disable_backpressure=1 \
     debug.hwc.winupdate=1
 
 # Wifi
