@@ -136,6 +136,9 @@ GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
 BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 
+# Legacy memfd
+TARGET_HAS_MEMFD_BACKPORT := true
+
 # Low memory devices
 MALLOC_SVELTE := true
 
