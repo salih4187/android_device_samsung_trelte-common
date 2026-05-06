@@ -123,6 +123,7 @@ TARGET_KERNEL_SOURCE := kernel/samsung/universal5433
 BOARD_KERNEL_IMAGE_NAME := zImage
 TARGET_LINUX_KERNEL_VERSION := 3.10
 TARGET_BOARD_KERNEL_HEADERS := hardware/samsung_slsi/exynos/kernel-3.10-headers/kernel-headers
+TARGET_KERNEL_CLANG_COMPILE := false
 
 # KEYSTORE
 BOARD_USES_TRUST_KEYMASTER := true
