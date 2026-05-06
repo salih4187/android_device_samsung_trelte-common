@@ -272,7 +272,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-service.exynos
+    android.hardware.power-service.exynos
 
 # Ramdisk
 PRODUCT_PACKAGES += \
