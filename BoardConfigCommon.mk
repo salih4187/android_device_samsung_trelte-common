@@ -170,7 +170,7 @@ BOARD_USE_SEIREN_AUDIO := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.universal5433
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_HAS_DOWNLOAD_MODE := true
-LZMA_RAMDISK_TARGETS := recovery
+BOARD_RAMDISK_USE_XZ := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/samsung/trelte-common/sepolicy
