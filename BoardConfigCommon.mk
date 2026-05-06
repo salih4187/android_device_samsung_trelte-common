@@ -25,9 +25,6 @@ BUILD_BROKEN_DUP_RULES := true
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2017-08-01
 
-# Audio
-USE_XML_AUDIO_POLICY_CONF := 1
-
 # Binder
 TARGET_USES_64_BIT_BINDER := true
 
