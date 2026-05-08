@@ -26,9 +26,6 @@ on post-fs-data
     # hatp
     mkdir /data/misc/radio/hatp 0755 radio system
 
-    # Samsung Pay
-    mkdir /efs/pfw_data 0760 spay spay
-
     # NFC
     mkdir /data/nfc 0700 nfc nfc
     mkdir /data/nfc/param 0700 nfc nfc
