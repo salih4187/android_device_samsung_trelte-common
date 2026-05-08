@@ -49,7 +49,6 @@
 using android::base::GetProperty;
 using android::base::ReadFileToString;
 using android::base::Trim;
-using android::init::property_set;
 
 // copied from build/tools/releasetools/ota_from_target_files.py
 // but with "." at the end and empty entry
@@ -108,14 +107,14 @@ void property_override(char const prop[], char const value[], bool add = true)
 
 void lte_properties()
 {
-    property_set("telephony.lteOnGsmDevice", "1");
-    property_set("ro.telephony.default_network", "9");
+    property_override("telephony.lteOnGsmDevice", "1");
+    property_override("ro.telephony.default_network", "9");
 }
 
 void nonlte_properties()
 {
-    property_set("telephony.lteOnGsmDevice", "0");
-    property_set("ro.telephony.default_network", "3");
+    property_override("telephony.lteOnGsmDevice", "0");
+    property_override("ro.telephony.default_network", "3");
 }
 
 static void workaround_snet_properties() {
