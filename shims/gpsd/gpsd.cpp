@@ -22,6 +22,7 @@ extern "C" {
   ssize_t _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE(void* thiz, void* list) {
     return _ZN7android13SensorManager13getSensorListEPPKPKNS_6SensorE(thiz, list);
   }
+  extern void _ZN7android13SensorManager16createEventQueueENS_7String8Ei(void **retVal, void *sensorMgr, void **str8P, int mode);
 }
 
 extern "C" int _ZN7android13SensorManagerD1Ev();
