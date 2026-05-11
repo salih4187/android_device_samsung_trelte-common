@@ -7,6 +7,11 @@ cc_library_shared {
     ],
 
     shared_libs: [
+        "liblog",
+        "libcutils",
+        "libgui",
+        "libbinder",
+        "libutils",
         "libsensor",
     ],
 }
