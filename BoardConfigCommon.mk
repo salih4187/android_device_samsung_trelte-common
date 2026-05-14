@@ -173,7 +173,7 @@ BOARD_HAS_DOWNLOAD_MODE := true
 BOARD_RAMDISK_USE_XZ := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/samsung/trelte-common/sepolicy
+#BOARD_SEPOLICY_DIRS += device/samsung/trelte-common/sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
 
 # Sensors
