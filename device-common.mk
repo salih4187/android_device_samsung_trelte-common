@@ -301,6 +301,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libcutils_shim
 
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH) \
+    hardware/google/interfaces \
+    hardware/google/pixel \
+    hardware/samsung \
+    hardware/samsung/aidl/power-libperfmgr
+
 # USB HAL
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
