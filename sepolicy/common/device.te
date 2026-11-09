@@ -1,0 +1,7 @@
+type alarm_device, dev_type;
+type fimg2d_video_device, dev_type;
+type m2m1shot_device, dev_type;
+type s5p_smem_device, dev_type;
+type seiren_device, dev_type;
+type uart_device, dev_type;
+type vfsspi_device, dev_type;

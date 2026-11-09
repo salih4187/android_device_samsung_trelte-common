@@ -1,0 +1,15 @@
+type display_vendor_data_file, file_type, data_file_type;
+
+# sysfs
+type sysfs_battery_supply, sysfs_type, r_fs_type, fs_type;
+type sysfs_memtrack, sysfs_type, r_fs_type, fs_type;
+type sysfs_graphics, sysfs_type, r_fs_type, fs_type;
+type sysfs_sec, sysfs_type, r_fs_type, fs_type;
+type sysfs_usb_supply, sysfs_type, r_fs_type, fs_type;
+
+# sysfs (writable)
+type sysfs_camera_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_exynos_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_mdnie_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_music_power_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_sensor_writable, sysfs_type, rw_fs_type, fs_type;

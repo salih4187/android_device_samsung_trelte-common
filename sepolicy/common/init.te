@@ -1,0 +1,16 @@
+allow init init:netlink_socket read;
+
+allow init sysfs:file rw_file_perms;
+
+allow init s5p_smem_device:chr_file rw_file_perms;
+
+allow init vfsspi_device:chr_file ioctl;
+
+allow init system_app:process signull;
+
+allow init kernel:system module_request;
+
+allow init efs_file:dir mounton;
+allow init system_file:file mounton;
+
+allow init proc:file r_file_perms;
