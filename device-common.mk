@@ -23,10 +23,6 @@ LOCAL_PATH := device/samsung/trelte-common
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
 
-# Common inherits
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
