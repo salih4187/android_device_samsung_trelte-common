@@ -109,7 +109,7 @@ BOARD_HDMI_INCAPABLE := true
 DEVICE_MANIFEST_FILE := device/samsung/trelte-common/manifest.xml
 
 # Include path
-TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 ### KERNEL
 BOARD_KERNEL_BASE := 0x10000000
