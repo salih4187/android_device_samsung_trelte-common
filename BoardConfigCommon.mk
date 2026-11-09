@@ -172,8 +172,7 @@ BOARD_RAMDISK_USE_XZ := true
 include device/lineage/sepolicy/exynos/sepolicy.mk
 BOARD_SEPOLICY_TEE_FLAVOR := mobicore
 include device/samsung_slsi/sepolicy/sepolicy.mk
-BOARD_VENDOR_SEPOLICY_DIRS += device/samsung/trelte-common/sepolicy/vendor
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/samsung/trelte-common/sepolicy/private
+BOARD_SEPOLICY_DIRS += device/samsung/trelte-common/sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
 
 # Sensors
